@@ -128,7 +128,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     * */
     @Override
     public void save(EmployeeDTO employeeDTO) {
-        Employee employee = new Employee();
+        Employee employee = new Employee();//去向数据库
 
         //对象属性拷贝 springbbot提供
         BeanUtils.copyProperties(employeeDTO, employee);
