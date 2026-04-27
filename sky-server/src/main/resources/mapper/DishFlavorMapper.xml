@@ -11,6 +11,7 @@
         </foreach>
     </insert>
 
+    <!--删除口味-->
     <delete id="deleteByDishIds">
         delete from dish_flavor where dish_id
         <foreach collection="dishIds" open=")" close=")" separator="," item="dishId">
