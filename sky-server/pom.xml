@@ -2,128 +2,158 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 修正：Parent 通常放在 ModelVersion 之后 -->
     <parent>
-        <artifactId>sky-take-out</artifactId>
         <groupId>com.sky</groupId>
+        <artifactId>sky-take-out</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>sky-server</artifactId>
-    <dependencies>
 
+    <artifactId>sky-server</artifactId>
+    <!-- 假设你的启动类在 com.sky.server 包下，请根据实际包名修改 -->
+    <name>sky-server</name>
+    <description>Server module of Sky Take-out</description>
+
+    <!-- 修正：显式指定打包类型为 jar (Spring Boot 默认) -->
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- 内部模块依赖 -->
+        <!-- 修复：显式加上版本号，或者在父 POM 的 dependencyManagement 中定义 -->
         <dependency>
             <groupId>com.sky</groupId>
             <artifactId>sky-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.sky</groupId>
             <artifactId>sky-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- Spring Boot 基础依赖 -->
+        <!-- 建议：在父 POM 中统一管理版本，如果父 POM 没有管理，请在这里加上 version -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- <version>3.1.0</version> -->
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <!-- <version>3.1.0</version> -->
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <!-- <version>3.1.0</version> -->
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
+        <!-- 数据库相关 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+            <!-- <version>8.0.33</version> -->
         </dependency>
-
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
+            <!-- <version>3.0.3</version> -->
         </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
+            <!-- <version>1.2.18</version> -->
         </dependency>
-
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <!-- <version>1.4.6</version> -->
         </dependency>
 
+        <!-- 工具类 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!-- <version>1.18.30</version> -->
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <!-- <version>1.2.83</version> -->
+        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
+            <!-- <version>1.9.7</version> -->
         </dependency>
-
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
+            <!-- <version>1.9.7</version> -->
         </dependency>
-
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-
+        <!-- 如果是 Java 11+，jaxb-api 可能需要手动引入 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
+            <!-- <version>2.3.1</version> -->
         </dependency>
 
-        <!-- poi -->
+        <!-- Knife4j 接口文档 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <!-- <version>4.3.0</version> -->
+        </dependency>
+
+        <!-- 其他业务依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <!-- <version>3.1.0</version> -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <!-- <version>3.1.0</version> -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <!-- <version>3.1.0</version> -->
+        </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
+            <!-- <version>5.2.4</version> -->
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
+            <!-- <version>5.2.4</version> -->
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- 关键点：版本必须 >= 3.11.0 -->
+                <version>3.11.0</version>
+                <configuration>
+                    <!-- 请根据你的实际环境修改 -->
+                    <!-- 如果是 JDK 8 写 8 -->
+                    <!-- 如果是 JDK 17 写 17 -->
+                    <source>17</source>
+                    <target>17</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
