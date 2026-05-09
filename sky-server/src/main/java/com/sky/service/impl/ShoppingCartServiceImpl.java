@@ -29,6 +29,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private SetmealMapper setmealMapper;//注入套餐
 
     /**
+     * 查看购物车列表
+     * @return
+     */
+    @Override
+    public List<ShoppingCart> showShoppingCart() {
+        //获取到当前微信用户的id
+        Long userId = BaseContext.getCurrentId();
+        ShoppingCart shoppingCart=ShoppingCart.builder()
+                .userId(userId)
+                .build();//构造一个购物车对象
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
+        return list;
+    }
+
+    /**
      * 添加购物车
      *
      * @param shoppingCartDTO
