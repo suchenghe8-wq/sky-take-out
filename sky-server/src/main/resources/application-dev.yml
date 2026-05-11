@@ -19,3 +19,7 @@ sky:
   wechat:
       app-id: wx214d7d4510c90fa5
       app-secret: a3fd961c56f8d2956cb3b57bd7d750f0
+  shop:
+    address: 新疆维吾尔自治区乌鲁木齐市沙依巴克区南昌路42号家属区四合院208号
+  baidu:
+    ak: TXgd1wJSGoF0D47dsXe1eoDG5uY1exsz
