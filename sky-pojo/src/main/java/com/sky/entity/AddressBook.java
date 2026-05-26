@@ -16,9 +16,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class AddressBook implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;//版本号
 
-    private Long id;
+    private Long id;//主键，地址的唯一编号
 
     //用户id
     private Long userId;

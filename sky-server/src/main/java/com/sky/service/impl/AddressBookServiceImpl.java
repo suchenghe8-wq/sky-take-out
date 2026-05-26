@@ -80,7 +80,7 @@ public class AddressBookServiceImpl implements AddressBookService {
      * @param id
      */
     public void deleteById(Long id) {
-        addressBookMapper.deleteById(id);
+        addressBookMapper.deleteById(id, BaseContext.getCurrentId());
     }
 
 }

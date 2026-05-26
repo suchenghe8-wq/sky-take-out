@@ -24,7 +24,7 @@ import java.util.Map;
  * 员工管理
  */
 @RestController
-@RequestMapping("/admin/employee")
+@RequestMapping("/admin/employee")//请求映射
 @Slf4j
 @Api(tags = "员工相关接口")
 public class EmployeeController {
@@ -40,9 +40,9 @@ public class EmployeeController {
      * @param employeeLoginDTO
      * @return
      */
-    @PostMapping("/login")
+    @PostMapping("/login")//新增
     @ApiOperation(value = "员工登录")
-    public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {//接收前端求求的用户名和密码
+    public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {//接收前端求求的用户名和密码  DTO是前端传给后端
         log.info("员工登录：{}", employeeLoginDTO);
 
         Employee employee = employeeService.login(employeeLoginDTO);//继续将前端传递用户名和密码传到service

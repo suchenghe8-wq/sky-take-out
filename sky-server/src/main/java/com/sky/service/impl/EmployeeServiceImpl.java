@@ -124,7 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /*
-    * 新增员工
+    * 新增员工  前端穿过来的DTO只有部分字段 要在后端手动设置和数据库字段保持一致
     * */
     @Override
     public void save(EmployeeDTO employeeDTO) {

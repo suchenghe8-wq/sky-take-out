@@ -1,4 +1,4 @@
-package com.sky.mapper;
+ package com.sky.mapper;
 
 import com.sky.entity.AddressBook;
 import org.apache.ibatis.annotations.*;
@@ -49,8 +49,9 @@ public interface AddressBookMapper {
     /**
      * 根据id删除地址
      * @param id
+     * @param userId
      */
-    @Delete("delete from address_book where id = #{id}")
-    void deleteById(Long id);
+    @Delete("delete from address_book where id = #{id} and user_id = #{userId}")
+    void deleteById(Long id, Long userId);
 
 }

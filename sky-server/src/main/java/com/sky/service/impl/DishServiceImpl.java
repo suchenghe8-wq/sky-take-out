@@ -135,6 +135,8 @@ public class DishServiceImpl implements DishService {
     public void saveWithFlavor(DishDTO dishDTO) {
 
         Dish dish=new Dish();//属性拷贝
+        BeanUtils.copyProperties(dishDTO, dish);
+
         //向菜品表插入一条数据
         dishMapper.insert(dish);
 
@@ -172,22 +174,22 @@ public class DishServiceImpl implements DishService {
      * @return
      */
     public List<DishVO> listWithFlavor(Dish dish) {
-        List<Dish> dishList = dishMapper.list(dish);
+        List<Dish> dishList = dishMapper.list(dish);//查出所有起售中的菜品
 
-        List<DishVO> dishVOList = new ArrayList<>();
+        List<DishVO> dishVOList = new ArrayList<>();//将查询出的菜品封装在这里面
 
-        for (Dish d : dishList) {
+        for (Dish d : dishList) {//循环遍历每个菜品
             DishVO dishVO = new DishVO();
-            BeanUtils.copyProperties(d,dishVO);
+            BeanUtils.copyProperties(d,dishVO);//把dish的基础属性拷贝进去
 
-            //根据菜品id查询对应的口味
-            List<DishFlavor> flavors = dishFlavorMapper.getByDishId(d.getId());
+            //根据菜品id查询对应的口味 DishVO = Dish（菜品基本信息）+ flavors（口味列表）。
+            List<DishFlavor> flavors = dishFlavorMapper.getByDishId(d.getId());//查询菜品的口味
 
-            dishVO.setFlavors(flavors);
+            dishVO.setFlavors(flavors);//把口味设置给VO
             dishVOList.add(dishVO);
         }
 
-        return dishVOList;
+        return dishVOList;//返回
     }
 
     /**

@@ -56,7 +56,7 @@ public class SetmealServiceImpl implements SetmealService {
         //获取生成的套餐id
         Long setmealId = setmeal.getId();
 
-        List<SetmealDish> setmealDishes = setmealDTO.getSetmealDishes();
+        List<SetmealDish> setmealDishes = setmealDTO.getSetmealDishes();//套餐菜品关系
         setmealDishes.forEach(setmealDish -> {
             setmealDish.setSetmealId(setmealId);
         });

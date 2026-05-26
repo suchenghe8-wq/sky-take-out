@@ -21,12 +21,12 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import java.util.List;
 
-@Configuration
+@Configuration//标记这是配置类
 @Slf4j
 @Data
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
-    @Autowired
+    @Autowired//依赖注入
     private JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
 
     @Autowired

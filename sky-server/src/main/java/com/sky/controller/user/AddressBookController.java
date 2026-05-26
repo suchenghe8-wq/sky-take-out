@@ -101,7 +101,7 @@ public class AddressBookController {
         AddressBook addressBook = new AddressBook();
         addressBook.setIsDefault(1);
         addressBook.setUserId(BaseContext.getCurrentId());
-        List<AddressBook> list = addressBookService.list(addressBook);
+        List<AddressBook> list = addressBookService.list(addressBook);//查询
 
         if (list != null && list.size() == 1) {
             return Result.success(list.get(0));
